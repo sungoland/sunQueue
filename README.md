@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/sungoland/sunQueue.svg?branch=master)](https://travis-ci.org/sungoland/sunQueue)
 [![Coverage Status](https://coveralls.io/repos/github/sungoland/sunQueue/badge.svg?branch=master)](https://coveralls.io/github/sungoland/sunQueue?branch=master)
 
 * 安装
