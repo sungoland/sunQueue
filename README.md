@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/sungoland/sunQueue/badge.svg?branch=master)](https://coveralls.io/github/sungoland/sunQueue?branch=master)
+
 * 安装
 
 ```
