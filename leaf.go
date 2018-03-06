@@ -33,6 +33,10 @@ func InitLeaf() *LeafInf {
 	return leaf
 }
 
+func  (t *LeafInf ) GetDieTime() int  {
+	return t.dieTime
+}
+
 func (t *LeafInf ) SetLeftLeaf(lft *LeafInf) bool  {
 	t.leftLeaf = lft
 	return  true
