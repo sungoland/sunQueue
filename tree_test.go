@@ -3,10 +3,7 @@ package sunQueue
 import (
 	"testing"
 	//"fmt"
-
 )
-
-
 
 func TestInitTree(t *testing.T) {
 	//myt := InitTree("mytest")
@@ -20,7 +17,6 @@ func TestInitTree(t *testing.T) {
 }
 
 //var leafNum = 100
-
 
 //
 //func TestTree_NewLeaf(t *testing.T) {

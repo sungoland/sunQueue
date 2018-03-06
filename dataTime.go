@@ -1,15 +1,14 @@
 package sunQueue
 
 import (
-	"time"
 	_ "fmt"
+	"time"
 )
 
 //当前时间
 var newTime = 0
 
 var isRun = false
-
 
 func GetTime() int {
 	//如果没有运行 则开启一个协成运行
@@ -29,17 +28,16 @@ func GetTime() int {
 	return newTime
 }
 
-func timeTick()  {
+func timeTick() {
 	t := time.Now()
 	UnixTime := t.Unix()
 	timestamp := int(UnixTime)
 	newTime = timestamp
 
-
 }
 
 func Gettimestamp() int {
-	for newTime<=0 && isRun == false{
+	for newTime <= 0 && isRun == false {
 		_ = GetTime()
 		timeTick()
 	}

@@ -13,12 +13,9 @@ type LeafInf struct {
 	leftLeaf *LeafInf
 
 	rightLeaf *LeafInf
-
-
-
 }
 
-func (t *LeafInf ) GetSendMessage() string {
+func (t *LeafInf) GetSendMessage() string {
 	return t.sendMessageJson
 }
 
@@ -33,17 +30,16 @@ func InitLeaf() *LeafInf {
 	return leaf
 }
 
-func  (t *LeafInf ) GetDieTime() int  {
+func (t *LeafInf) GetDieTime() int {
 	return t.dieTime
 }
 
-func (t *LeafInf ) SetLeftLeaf(lft *LeafInf) bool  {
+func (t *LeafInf) SetLeftLeaf(lft *LeafInf) bool {
 	t.leftLeaf = lft
-	return  true
+	return true
 }
 
-func (t *LeafInf ) SetRightLeaf(rft *LeafInf) bool {
+func (t *LeafInf) SetRightLeaf(rft *LeafInf) bool {
 	t.rightLeaf = rft
-	return  true
+	return true
 }
-
