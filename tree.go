@@ -1,10 +1,11 @@
-//树信息包
 package sunQueue
 
 import (
-	"sync/atomic"
-	"runtime"
+	//"sync/atomic"
+	//"runtime"
 	"time"
+	"runtime"
+	"sync/atomic"
 )
 
 type Tree struct {
@@ -88,6 +89,14 @@ func (t *Tree) StartFunc()  {
 	}()
 }
 
+func  (t *Tree) GetTreeName() string {
+	return t.treeNameStr
+}
+
+func (t *Tree) GetLeafCount() int  {
+	return t.leafInt
+}
+
 //实例化一棵树
 func InitTree(treename string) *Tree {
 	t := new(Tree)
@@ -103,7 +112,7 @@ func InitTree(treename string) *Tree {
 	t.leaf.useLeaf = nil
 	t.isAdd = 0
 	t.isStart = 0
-	t.NewLeaf(-1,"test")
+	//t.NewLeaf(-1,"test")
 	return t
 }
 
@@ -128,7 +137,7 @@ func (t *Tree) NewLeaf(dieTime int , sendJson string) *LeafInf {
 				t.leaf.useLeaf = newT
 				newT.leftLeaf = newT
 				newT.rightLeaf = newT
-			}else {
+			} else {
 				t.leafInt ++
 				newT.leftLeaf = t.leaf.useLeaf
 				t.leaf.useLeaf.rightLeaf = newT
@@ -140,10 +149,6 @@ func (t *Tree) NewLeaf(dieTime int , sendJson string) *LeafInf {
 			}
 			t.isAdd = 0
 			break
-
-		}else {
-			// 显式地让出CPU时间给其他goroutine
-			runtime.Gosched()
 		}
 
 	}
@@ -151,7 +156,7 @@ func (t *Tree) NewLeaf(dieTime int , sendJson string) *LeafInf {
 
 	return newT
 }
-
+//
 //删除叶子
 func (leaf *LeafInf) DelLeaf() bool {
 
