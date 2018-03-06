@@ -1,16 +1,12 @@
+
 language: go
-
 go:
-  - 1.6
-  - 1.7
+  - 1.2
+  - 1.3
   - tip
-  
 install:
-  - go get golang.org/x/tools/cmd/cover
+  - go get code.google.com/p/go.tools/cmd/cover
   - go get github.com/mattn/goveralls
-  - go list -f '{{range .Imports}}{{.}} {{end}}' ./... | xargs go get -v
-  - go list -f '{{range .TestImports}}{{.}} {{end}}' ./... | xargs go get -v
-
 script:
   - go test -v -covermode=count -coverprofile=coverage.out
-  - $HOME/gopath/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN
+  - $(go env GOPATH | awk 'BEGIN{FS=":"} {print $1}')/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN
