@@ -1,4 +1,7 @@
-//叶子信息
+// Copyright 2018 sun. All rights reserved.
+// Use of this source code is governed by a MIT-style
+// license that can be found in the LICENSE file.
+
 package sunQueue
 
 //叶子的信息结构
