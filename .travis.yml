@@ -8,4 +8,6 @@ go:
   - 1.7
   - tip
   
-  script:
+  
+script:
+  - /Users/sun/Documents/go110/bin/go  test
