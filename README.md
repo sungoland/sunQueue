@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/sungoland/sunQueue.svg?branch=master)](https://travis-ci.org/sungoland/sunQueue)
 [![Coverage Status](https://coveralls.io/repos/github/sungoland/sunQueue/badge.svg?branch=master)](https://coveralls.io/github/sungoland/sunQueue?branch=master)
+[![Go Report Card](https://goreportcard.com/badge/github.com/sungoland/sunQueue)](https://goreportcard.com/report/github.com/sungoland/sunQueue)
 
 * 安装
 
