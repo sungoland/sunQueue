@@ -19,12 +19,12 @@ type LeafInf struct {
 	rightLeaf *LeafInf
 }
 
-// 获取当前叶子的信息
+// 获取当前叶子的信息 sendMessageJson
 func (t *LeafInf) GetSendMessage() string {
 	return t.sendMessageJson
 }
 
-// 初始化一片叶子
+// 初始化一片叶子  leaf
 func InitLeaf() *LeafInf {
 	leaf := new(LeafInf)
 
@@ -36,12 +36,12 @@ func InitLeaf() *LeafInf {
 	return leaf
 }
 
-// 获取叶子的创建时间
+// 获取叶子的创建时间 createTime
 func (t *LeafInf) GetCreateTime() int {
 	return t.createTime
 }
 
-// 获取叶子的到期时间
+// 获取叶子的到期时间  dieTime
 func (t *LeafInf) GetDieTime() int {
 	return t.dieTime
 }

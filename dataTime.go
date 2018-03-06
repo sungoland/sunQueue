@@ -2,7 +2,6 @@
 // Use of this source code is governed by a MIT-style
 // license that can be found in the LICENSE file.
 
-// 时间类处理信息 通过时钟调用 记录时间戳 频繁进入内核态 获取时间
 package sunQueue
 
 import (
