@@ -8,8 +8,9 @@ import (
 	"time"
 )
 
+//树的信息结构
 type Tree struct {
-	create_time int
+	createTime int
 
 	//叶子的数量
 	leafInt int
@@ -38,6 +39,7 @@ type Tree struct {
 	isStart int32
 }
 
+//获取数中第一片叶子和真正使用的叶子信息
 type leafMeneyInf struct {
 	//第一片叶子的地址
 	firstLeaf *LeafInf
@@ -46,20 +48,18 @@ type leafMeneyInf struct {
 	useLeaf *LeafInf
 }
 
-func (t *Tree) GetLeafInt() int {
-	return t.leafInt
-}
-
+//获取一共发送消息的数量
 func (t *Tree) GetSendInt() int {
 	return t.sendLeafInt
 }
 
+//获取发送消息失败的数量
 func (t *Tree) GetFailInt() int {
 	return t.failLeafInt
 }
 
+//执行树轮询的方法
 func (t *Tree) StartFunc() {
-	//防止多次开启
 	if t.isStart == 1 {
 		return
 	}
@@ -77,17 +77,18 @@ func (t *Tree) StartFunc() {
 			}
 			doleaf.DelLeaf()
 			doleaf = doleaf.rightLeaf
-			// 显式地让出CPU时间给其他goroutine
-			runtime.Gosched()
+			runtime.Gosched() // 显式地让出CPU时间给其他goroutine
 		}
 
 	}()
 }
 
+//获取树的名称
 func (t *Tree) GetTreeName() string {
 	return t.treeNameStr
 }
 
+//获取树初始化到现一共放入的消息数量
 func (t *Tree) GetLeafCount() int {
 	return t.leafInt
 }
@@ -97,7 +98,7 @@ func InitTree(treename string) *Tree {
 	t := new(Tree)
 	t.leaf = new(leafMeneyInf)
 
-	t.create_time = Gettimestamp()
+	t.createTime = Gettimestamp()
 	t.sendLeafInt = 0
 	t.failLeafInt = 0
 	t.leafInt = 0
@@ -111,6 +112,7 @@ func InitTree(treename string) *Tree {
 	return t
 }
 
+//设置一个用户的方法 当轮询的时候 代用
 func (t *Tree) SetFunc(f func(*Tree, *LeafInf) bool) {
 	t.doFunc = f
 }

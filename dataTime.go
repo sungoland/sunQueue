@@ -10,8 +10,8 @@ var newTime = 0
 
 var isRun = false
 
-func GetTime() int {
-	//如果没有运行 则开启一个协成运行
+//如果没有运行 则开启一个协成运行
+func runTick() {
 	if isRun == false {
 		isRun = true
 		go func() {
@@ -25,7 +25,6 @@ func GetTime() int {
 			}
 		}()
 	}
-	return newTime
 }
 
 func timeTick() {
@@ -38,7 +37,7 @@ func timeTick() {
 
 func Gettimestamp() int {
 	for newTime <= 0 && isRun == false {
-		_ = GetTime()
+		runTick()
 		timeTick()
 	}
 
