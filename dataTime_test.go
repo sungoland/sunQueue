@@ -12,5 +12,4 @@ import (
 func TestGetTime(t *testing.T) {
 	Gettimestamp()
 	t.Log("创建树成功")
-
 }
