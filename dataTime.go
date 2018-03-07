@@ -7,6 +7,7 @@ package sunQueue
 import (
 	_ "fmt"
 	"time"
+	"runtime"
 )
 
 //当前时间
@@ -19,14 +20,8 @@ func runTick() {
 	if isRun == false {
 		isRun = true
 		go func() {
-			for {
-
-				tick := time.Tick(1 * time.Second)
-				select {
-				case <-tick:
-					timeTick()
-				}
-			}
+			timeTick()
+			runtime.Gosched()
 		}()
 	}
 }
