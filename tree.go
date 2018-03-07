@@ -9,7 +9,6 @@ import (
 	//"runtime"
 	"runtime"
 	"sync/atomic"
-	"time"
 )
 
 // 树的信息结构
@@ -67,12 +66,25 @@ func (t *Tree) StartFunc() {
 	if t.isStart == 1 {
 		return
 	}
+	t.isStart = 1
 	go func() {
-		doleaf := t.leaf.firstLeaf.rightLeaf
+
+		doleaf := t.leaf.firstLeaf
+
+		for  t.leaf.firstLeaf == nil {
+			runtime.Gosched() // 显式地让出CPU时间给其他goroutine
+		}
+
+		doleaf = t.leaf.firstLeaf.rightLeaf
+
 		for {
 			if doleaf == t.leaf.firstLeaf {
 				doleaf = t.leaf.firstLeaf.rightLeaf
-				time.Sleep(time.Millisecond * 10)
+				runtime.Gosched() // 显式地让出CPU时间给其他goroutine
+				continue
+			}
+			if doleaf == nil {
+				runtime.Gosched() // 显式地让出CPU时间给其他goroutine
 				continue
 			}
 			t.sendLeafInt++
@@ -136,18 +148,18 @@ func (t *Tree) NewLeaf(dieTime int, sendJson string) *LeafInf {
 				t.leaf.useLeaf = newT
 				newT.leftLeaf = newT
 				newT.rightLeaf = newT
-			} else {
-				t.leafInt++
-				newT.leftLeaf = t.leaf.useLeaf
-				t.leaf.useLeaf.rightLeaf = newT
-
-				t.leaf.firstLeaf.leftLeaf = newT
-				newT.rightLeaf = t.leaf.firstLeaf
-				t.leaf.useLeaf = newT
-
 			}
+			t.leafInt++
+			newT.leftLeaf = t.leaf.useLeaf
+			t.leaf.useLeaf.rightLeaf = newT
+
+			t.leaf.firstLeaf.leftLeaf = newT
+			newT.rightLeaf = t.leaf.firstLeaf
+			t.leaf.useLeaf = newT
 			t.isAdd = 0
 			break
+		}else {
+			runtime.Gosched()
 		}
 
 	}
